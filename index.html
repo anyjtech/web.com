@@ -105,6 +105,12 @@
 
         .btn-wa { padding: 15px 40px; background: var(--primary); color: #000; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s; }
         .btn-wa:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
+
+Form */
+.form-container { background: var(--card-bg); padding: 40px; border-radius: 25px; border: 1px solid #222; text-align: left; }
+input, textarea, select { width: 100%; padding: 14px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 15px; font-family: inherit; }
+.btn-send { width: 100%; padding: 16px; background: var(--primary); border: none; border-radius: 10px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+.btn-send:hover { background: #00b8d9; transform: scale(1.02); }
         
         /* FOOTER */
 
@@ -201,7 +207,19 @@ margin-top:50px;
     <div class="content-center">
         <h2>Siap Untuk <span>Bekerjasama?</span></h2>
         <p>Silakan hubungi kami untuk mendiskusikan kebutuhan Anda secara langsung.</p>
-        <button class="btn-wa" onclick="window.open('https://wa.me/6283152410506', '_blank')">Hubungi Admin atau Owner Via WhatsApp</button>
+        <p>Pilih divisi dan jelaskan keperluan Anda, kami akan segera merespon.</p>
+        
+        <div class="form-container">
+            <input type="text" id="c_name" placeholder="Nama Lengkap">
+            <select id="c_divisi">
+                <option value="General">Tanya Umum</option>
+                <option value="Arkan Studio">Arkan Studio</option>
+                <option value="ANYJ Tech">ANYJ Tech</option>
+                <option value="ANYJ Audio">ANYJ Audio</option>
+            </select>
+            <textarea id="c_msg" rows="5" placeholder="Pesan atau detail proyek..."></textarea>
+            <button class="btn-send" onclick="sendToWA()">Kirim via WhatsApp</button>
+        </div>
     </div>
 </section>
 
@@ -241,6 +259,19 @@ margin-top:50px;
             }, 1300);
         }, 12500); // 12.5 detik total tayang loading
     });
+
+    // --- WHATSAPP LOGIC ---
+    function sendToWA() {
+        const name = document.getElementById('c_name').value;
+        const div = document.getElementById('c_divisi').value;
+        const msg = document.getElementById('c_msg').value;
+        const phone = "6283152410506";
+        
+        if(!name || !msg) return alert("Mohon lengkapi nama dan pesan.");
+        
+        const text = `Halo ANYJTECH Group,\n\nSaya *${name}* ingin berkonsultasi mengenai divisi *${div}*.\n\n*Pesan:* ${msg}`;
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+    }
 
     // 4. Background Canvas Particles
     const canvas = document.getElementById("particles");
