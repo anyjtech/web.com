@@ -18,99 +18,77 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
-/* --- ANIMASI SUPER CINEMATIC (20 DETIK) --- */
-:root {
-    --primary: #00d9ff;
-    --primary-glow: rgba(0, 217, 255, 0.5);
-}
 
-.div-logo-load {
-    position: absolute; 
-    width: 85px; 
-    height: 85px; 
-    border-radius: 50%;
-    background: #000; 
-    border: 2px solid var(--primary);
-    box-shadow: 0 0 35px var(--primary-glow);
-    background-size: cover; 
-    background-position: center;
-    opacity: 0;
-    /* Optimasi Performa */
-    will-change: transform, opacity; 
-    animation: win7superSlow 14s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
+        /* --- LOADING SCREEN WINDOWS 7 STYLE (20 SECONDS) --- */
+        #loader {
+            position: fixed; inset: 0; background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 99999; 
+        }
 
-@keyframes win7superSlow {
-    0% { 
-        transform: rotate(0deg) translateX(170px) scale(0); 
-        opacity: 0; 
-    }
-    5% { 
-        opacity: 1; 
-        transform: rotate(30deg) translateX(170px) scale(1); 
-    }
-    /* Fase Orbit Lambat */
-    60% { 
-        transform: rotate(1080deg) translateX(170px) scale(1); 
-        opacity: 1; 
-        filter: blur(0);
-    }
-    /* Fase Penggabungan ke Tengah */
-    75% { 
-        transform: rotate(1260deg) translateX(0px) scale(1.4); 
-        opacity: 1; 
-        filter: blur(0);
-    }
-    /* Fase Bertumpuk (Jeda Dramatis) */
-    85% {
-        transform: rotate(1260deg) translateX(0px) scale(1.6);
-        opacity: 1;
-        filter: blur(2px);
-    }
-    /* Fase Ledakan Dahsyat */
-    93% { 
-        transform: rotate(1260deg) translateX(0px) scale(30); 
-        opacity: 0; 
-        filter: blur(80px); 
-    }
-    100% { 
-        transform: scale(0);
-        opacity: 0; 
-    }
-}
+        .loader-wrapper { 
+            position: relative; width: 100%; height: 100%; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        }
 
-/* Reveal Brand Utama (ANYJos) */
-.final-brand {
-    position: absolute; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    opacity: 0; 
-    will-change: transform, opacity;
-    animation: finalShowCinematic 4s ease-out forwards; 
-    animation-delay: 13s; 
-}
+        .orbit-container { position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; }
 
-@keyframes finalShowCinematic { 
-    0% { opacity: 0; transform: scale(0.6) translateY(40px); filter: blur(30px); }
-    50% { opacity: 1; transform: scale(1.05) translateY(0); filter: blur(0); }
-    100% { opacity: 1; transform: scale(1); filter: blur(0); }
-}
+        .div-logo-load {
+            position: absolute; width: 85px; height: 85px; border-radius: 50%;
+            background: #000; border: 2px solid var(--primary);
+            box-shadow: 0 0 35px var(--primary-glow);
+            animation: win7superSlow 14s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            background-size: cover; background-position: center;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
 
-.anyjos-box {
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    opacity: 0; 
-    animation: fadeUp 2s ease-out forwards; 
-    animation-delay: 15s; 
-}
+        @keyframes win7superSlow {
+            0% { transform: rotate(0deg) translateX(170px) scale(0); opacity: 0; }
+            5% { opacity: 1; transform: rotate(30deg) translateX(170px) scale(1); }
+            60% { transform: rotate(1080deg) translateX(170px) scale(1); opacity: 1; filter: blur(0); }
+            75% { transform: rotate(1260deg) translateX(0px) scale(1.4); opacity: 1; filter: blur(0); }
+            85% { transform: rotate(1260deg) translateX(0px) scale(1.6); opacity: 1; filter: blur(2px); }
+            93% { transform: rotate(1260deg) translateX(0px) scale(30); opacity: 0; filter: blur(80px); }
+            100% { transform: scale(0); opacity: 0; }
+        }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        /* Branding Setelah Ledakan */
+        .final-brand {
+            position: absolute; display: flex; flex-direction: column; align-items: center;
+            opacity: 0; transform: scale(0.6);
+            will-change: transform, opacity;
+            animation: finalShowCinematic 4s ease-out forwards; 
+            animation-delay: 13s; 
+        }
 
+        .main-logo-img { 
+            width: 180px; height: auto;
+            filter: drop-shadow(0 0 25px var(--primary-glow));
+            margin-bottom: 25px;
+        }
+
+        .anyjos-box {
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; animation: fadeUp 2s ease-out forwards; 
+            animation-delay: 15s; 
+        }
+
+        .os-logo-anim { width: 60px; height: auto; margin-left: 10px; }
+        .any-text { font-size: 3rem; font-weight: 300; letter-spacing: 5px; color: #fff; }
+
+        .tagline {
+            font-size: 0.8rem; color: var(--text-muted); letter-spacing: 6px; margin-top: 15px;
+            opacity: 0; animation: fadeUp 1.5s forwards; animation-delay: 16.5s;
+        }
+
+        @keyframes finalShowCinematic { 
+            0% { opacity: 0; transform: scale(0.6) translateY(40px); filter: blur(30px); }
+            50% { opacity: 1; transform: scale(1.05) translateY(0); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- WEBSITE LAYOUT --- */
         header {
@@ -135,37 +113,26 @@
         h1 span { color: var(--primary); }
         p { line-height: 1.8; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
 
-        .btn-wa { padding: 15px 40px; background: var(--primary); color: #000; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s; }
-        .btn-wa:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
+        /* Form Style */
+        .form-container { background: var(--card-bg); padding: 40px; border-radius: 25px; border: 1px solid #222; text-align: left; }
+        input, textarea, select { width: 100%; padding: 14px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 15px; font-family: inherit; }
+        .btn-send { width: 100%; padding: 16px; background: var(--primary); border: none; border-radius: 10px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .btn-send:hover { background: #00b8d9; transform: scale(1.02); }
 
-Form */
-.form-container { background: var(--card-bg); padding: 40px; border-radius: 25px; border: 1px solid #222; text-align: left; }
-input, textarea, select { width: 100%; padding: 14px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 15px; font-family: inherit; }
-.btn-send { width: 100%; padding: 16px; background: var(--primary); border: none; border-radius: 10px; font-weight: 800; cursor: pointer; transition: 0.3s; }
-.btn-send:hover { background: #00b8d9; transform: scale(1.02); }
-        
-        /* FOOTER */
-
-footer{
-background:#000;
-padding:40px;
-text-align:center;
-margin-top:50px;
-}
-
+        footer { background:#000; padding:40px; text-align:center; margin-top:50px; border-top: 1px solid #111; color: var(--text-muted); }
     </style>
 </head>
 <body>
 
 <div id="loader">
     <div class="loader-wrapper">
-        <div class="orbit-container" id="orbit-target">
-            </div>
+        <div class="orbit-container" id="orbit-target"></div>
         
         <div class="final-brand">
-            <img src="os.png" class="main-logo-img">
+            <img src="techii.png" class="main-logo-img">
             <div class="anyjos-box">
-                <span class="any-text">ANYJos</span>
+                <span class="any-text">ANYJ</span>
+                <img src="os.png" class="os-logo-anim">
             </div>
             <div class="tagline">INNOVATE • CREATE • ELEVATE</div>
         </div>
@@ -189,9 +156,8 @@ margin-top:50px;
 <main id="main" class="page active">
     <div class="content-center">
         <h1>ANYJTECH <span>Group</span></h1>
-        <p>Solusi terpadu yang menggabungkan keahlian teknis elektronik, kreativitas visual, dan kualitas audio profesional. Kami hadir untuk memberikan dampak nyata bagi bisnis dan kebutuhan Anda.</p>
-        <p>Mari ciptakan keajaiban bersama kami. Kami melayani dengan sepenuh hati untuk Negeri ini.</p>
-       <button class="btn-wa" onclick="showPage('contact')">Mulai Proyek</button>
+        <p>Solusi terpadu yang menggabungkan keahlian teknis elektronik, kreativitas visual, dan kualitas audio profesional. Kami melayani dengan sepenuh hati untuk kemajuan bersama.</p>
+        <button class="btn-send" style="width: auto; padding: 15px 40px;" onclick="showPage('contact')">Mulai Proyek</button>
     </div>
 </main>
 
@@ -200,9 +166,7 @@ margin-top:50px;
         <div class="div-display-logo" style="background-image: url('owner.jpeg'); width: 220px; height: 220px; border-radius: 30px;"></div>
         <h2>Arkan Naymar Aji</h2>
         <p style="color:var(--primary); font-weight: 800; text-transform: uppercase; margin-top: -15px;">Founder & CEO</p>
-        <p>"Dedikasi kami adalah menghadirkan teknologi yang tidak hanya berfungsi secara teknis, tapi juga memberikan nilai estetika dan manfaat jangka panjang bagi setiap klien kami."</p>
-<p>Karena kepuasan klien kami adalah tujuan utama dari ANYJTECH Group, visi kami : Melayani dengan sepenuh hati. dan misi kami: Memberikan produk dan layanan terbaik untuk masyarakat. </p>
-
+        <p>"Dedikasi kami adalah menghadirkan teknologi yang tidak hanya berfungsi secara teknis, tapi juga memberikan nilai estetika dan manfaat jangka panjang bagi setiap klien."</p>
     </div>
 </section>
 
@@ -210,8 +174,7 @@ margin-top:50px;
     <div class="content-center">
         <div class="div-display-logo" style="background-image: url('Studii.png');"></div>
         <h1>Arkan <span>Studio</span></h1>
-        <p>Layanan fotografi, videografi, dan editing cinematic profesional. Kami menangkap setiap detail momen Anda dengan perspektif seni digital yang modern.</p>
-        <p>"Abadikanlah setiap momen berharga anda bersama kami, katena nantinya kita hanya dapat mengingatnya tudak dapat mengulanginya." -owner</p>
+        <p>Layanan fotografi, videografi, dan editing cinematic profesional. "Abadikan momen berharga Anda karena kita hanya bisa mengingat, bukan mengulang." -owner</p>
     </div>
 </section>
 
@@ -220,8 +183,6 @@ margin-top:50px;
         <div class="div-display-logo" style="background-image: url('techii.png');"></div>
         <h1>ANYJ <span>Tech</span></h1>
         <p>Spesialis service elektronik, perbaikan hardware, maintenance komputer, dan solusi sistem digital terapan.</p>
-<p>"Hargailah barang mu karena itu milik mu semua barang itu berharga jika itu dapat berguna bagi kita." -owner</p>
-
     </div>
 </section>
 
@@ -229,19 +190,14 @@ margin-top:50px;
     <div class="content-center">
         <div class="div-display-logo" style="background-image: url('Audii.png');"></div>
         <h1>ANYJ <span>Audio</span></h1>
-        <p>Manajemen sistem tata suara, rekayasa audio, dan penyediaan perangkat audio profesional untuk berbagai skala event.</p>
-<p>Kualitas audio adalah sesuatu yang penting di semua event, baik event kecil ataupun event yang besar." -owner</p>
-
+        <p>Manajemen sistem tata suara dan rekayasa audio profesional. "Kualitas suara adalah nyawa dari setiap event Anda." -owner</p>
     </div>
 </section>
 
 <section id="contact" class="page">
     <div class="content-center">
         <h2>Siap Untuk <span>Bekerjasama?</span></h2>
-        <p>Silakan hubungi kami untuk mendiskusikan kebutuhan Anda secara langsung.</p>
-        <p>Pilih divisi dan jelaskan keperluan Anda, kami akan segera merespon.</p>
-        
-        <div class="form-container">
+        <div class="form-container" style="margin-top: 30px;">
             <input type="text" id="c_name" placeholder="Nama Lengkap">
             <select id="c_divisi">
                 <option value="General">Tanya Umum</option>
@@ -255,10 +211,10 @@ margin-top:50px;
     </div>
 </section>
 
-<footer>Copyright ANYJTECH Group &copy 2026</footer>
+<footer>Copyright ANYJTECH Group &copy; 2026</footer>
 
 <script>
-    // 1. Loading Orbit Logos
+    // 1. Build Loader
     function buildLoader() {
         const orbit = document.getElementById('orbit-target');
         const items = ['Studii.png', 'techii.png', 'Audii.png'];
@@ -266,7 +222,7 @@ margin-top:50px;
             const div = document.createElement('div');
             div.className = 'div-logo-load';
             div.style.backgroundImage = `url('${src}')`;
-            div.style.animationDelay = `${i * 0.5}s`;
+            div.style.animationDelay = `${i * 0.8}s`; 
             orbit.appendChild(div);
         });
     }
@@ -277,62 +233,33 @@ margin-top:50px;
         document.getElementById(id).classList.add('active');
         window.scrollTo(0,0);
     }
-/**
- * ANYJTECH Group - Loader Logic (20 Seconds)
- */
 
-function buildLoader() {
-    const orbit = document.getElementById('orbit-target');
-    // Pastikan nama file ini sesuai dengan folder kamu
-    const items = ['Studii.png', 'techii.png', 'Audii.png'];
-    
-    items.forEach((src, i) => {
-        const div = document.createElement('div');
-        div.className = 'div-logo-load';
-        div.style.backgroundImage = `url('${src}')`;
-        // Delay antar logo agar putaran terlihat berurutan
-        div.style.animationDelay = `${i * 0.8}s`; 
-        orbit.appendChild(div);
-    });
-}
-
-// Inisialisasi saat halaman dimuat
-window.addEventListener('load', () => {
-    buildLoader();
-    
-    // TOTAL DURASI TAYANG: 20 DETIK
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        
-        // Efek memudar saat masuk ke konten utama
-        loader.style.transition = 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        loader.style.opacity = '0';
-        
-        // Menghilangkan elemen dari DOM setelah benar-benar transparan
-        setTimeout(() => { 
-            loader.style.display = 'none';
-            // Mengembalikan scrollbar pada body
-            document.body.style.overflow = 'auto';
-        }, 2500);
-        
-    }, 20000); // 20000ms = 20 Detik
-});
-
-
-    // --- WHATSAPP LOGIC ---
+    // 3. WhatsApp Logic
     function sendToWA() {
         const name = document.getElementById('c_name').value;
         const div = document.getElementById('c_divisi').value;
         const msg = document.getElementById('c_msg').value;
         const phone = "6283152410506";
-        
         if(!name || !msg) return alert("Mohon lengkapi nama dan pesan.");
-        
         const text = `Halo ANYJTECH Group,\n\nSaya *${name}* ingin berkonsultasi mengenai divisi *${div}*.\n\n*Pesan:* ${msg}`;
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    // 4. Background Canvas Particles
+    // 4. Initialization & Timer
+    window.addEventListener('load', () => {
+        buildLoader();
+        setTimeout(() => {
+            const l = document.getElementById('loader');
+            l.style.transition = 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            l.style.opacity = '0';
+            setTimeout(() => { 
+                l.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 2500);
+        }, 20000); // 20 Detik
+    });
+
+    // 5. Particles Background
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
