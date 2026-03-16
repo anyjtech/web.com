@@ -152,16 +152,19 @@ margin-top:50px;
     <div class="content-center">
         <h1>ANYJTECH <span>Group</span></h1>
         <p>Solusi terpadu yang menggabungkan keahlian teknis elektronik, kreativitas visual, dan kualitas audio profesional. Kami hadir untuk memberikan dampak nyata bagi bisnis dan kebutuhan Anda.</p>
-        <button class="btn-wa" onclick="showPage('contact')">Mulai Proyek</button>
+        <p>Mari ciptakan keajaiban bersama kami. Kami melayani dengan sepenuh hati untuk Negeri ini.</p>
+       <button class="btn-wa" onclick="showPage('contact')">Mulai Proyek</button>
     </div>
 </main>
 
 <section id="owner" class="page">
     <div class="content-center">
         <div class="div-display-logo" style="background-image: url('owner.jpeg'); width: 220px; height: 220px; border-radius: 30px;"></div>
-        <h2>Arkan Nurjaya</h2>
+        <h2>Arkan Naymar Aji</h2>
         <p style="color:var(--primary); font-weight: 800; text-transform: uppercase; margin-top: -15px;">Founder & CEO</p>
         <p>"Dedikasi kami adalah menghadirkan teknologi yang tidak hanya berfungsi secara teknis, tapi juga memberikan nilai estetika dan manfaat jangka panjang bagi setiap klien kami."</p>
+<p>Karena kepuasan klien kami adalah tujuan utama dari ANYJTECH Group, visi kami : Melayani dengan sepenuh hati. dan misi kami: Memberikan produk dan layanan terbaik untuk masyarakat. </p>
+
     </div>
 </section>
 
@@ -170,6 +173,7 @@ margin-top:50px;
         <div class="div-display-logo" style="background-image: url('Studii.png');"></div>
         <h1>Arkan <span>Studio</span></h1>
         <p>Layanan fotografi, videografi, dan editing cinematic profesional. Kami menangkap setiap detail momen Anda dengan perspektif seni digital yang modern.</p>
+        <p>"Abadikanlah setiap momen berharga anda bersama kami, katena nantinya kita hanya dapat mengingatnya tudak dapat mengulanginya." -owner</p>
     </div>
 </section>
 
@@ -178,6 +182,8 @@ margin-top:50px;
         <div class="div-display-logo" style="background-image: url('techii.png');"></div>
         <h1>ANYJ <span>Tech</span></h1>
         <p>Spesialis service elektronik, perbaikan hardware, maintenance komputer, dan solusi sistem digital terapan.</p>
+<p>"Hargailah barang mu karena itu milik mu semua barang itu berharga jika itu dapat berguna bagi kita." -owner</p>
+
     </div>
 </section>
 
@@ -186,6 +192,8 @@ margin-top:50px;
         <div class="div-display-logo" style="background-image: url('Audii.png');"></div>
         <h1>ANYJ <span>Audio</span></h1>
         <p>Manajemen sistem tata suara, rekayasa audio, dan penyediaan perangkat audio profesional untuk berbagai skala event.</p>
+<p>Kualitas audio adalah sesuatu yang penting di semua event, baik event kecil ataupun event yang besar." -owner</p>
+
     </div>
 </section>
 
@@ -193,7 +201,7 @@ margin-top:50px;
     <div class="content-center">
         <h2>Siap Untuk <span>Bekerjasama?</span></h2>
         <p>Silakan hubungi kami untuk mendiskusikan kebutuhan Anda secara langsung.</p>
-        <button class="btn-wa" onclick="window.open('https://wa.me/6283152410506', '_blank')">Hubungi Admin Via WhatsApp</button>
+        <button class="btn-wa" onclick="window.open('https://wa.me/6283152410506', '_blank')">Hubungi Admin atau Owner Via WhatsApp</button>
     </div>
 </section>
 
@@ -208,7 +216,7 @@ margin-top:50px;
             const div = document.createElement('div');
             div.className = 'div-logo-load';
             div.style.backgroundImage = `url('${src}')`;
-            div.style.animationDelay = `${i * 0.4}s`;
+            div.style.animationDelay = `${i * 0.5}s`;
             orbit.appendChild(div);
         });
     }
@@ -230,8 +238,8 @@ margin-top:50px;
             setTimeout(() => { 
                 l.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }, 1200);
-        }, 11500); // 11.5 detik total tayang loading
+            }, 1300);
+        }, 12500); // 12.5 detik total tayang loading
     });
 
     // 4. Background Canvas Particles
